@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<!-- saved from url=(0092)http://mishrabagish.wordpress.com/2012/07/03/implementing-singleton-pattern-using-java-enum/ -->
+<html lang="en"><!--<![endif]--><!--
+	generated in 0.326 seconds
+	58956 bytes batcached for 300 seconds
+--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Implementing Singleton Pattern Using Java ‘enum’ | Teknology</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://mishrabagish.wordpress.com/xmlrpc.php">
+<!--[if lt IE 9]>
+<script src="http://s0.wp.com/wp-content/themes/pub/chateau/js/html5.js?m=1315596887g" type="text/javascript"></script>
+<![endif]-->
+<link rel="alternate" type="application/rss+xml" title="Teknology » Feed" href="http://mishrabagish.wordpress.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Teknology » Comments Feed" href="http://mishrabagish.wordpress.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Teknology » Implementing Singleton Pattern Using Java ‘enum’ Comments Feed" href="http://mishrabagish.wordpress.com/2012/07/03/implementing-singleton-pattern-using-java-enum/feed/">
+<script src="./Implementing Singleton Pattern Using Java ‘enum’   Teknology_files/quant.js" async="" type="text/javascript"></script><script type="text/javascript" async="" src="./Implementing Singleton Pattern Using Java ‘enum’   Teknology_files/wl"></script><script type="text/javascript">
+/* <![CDATA[ */
+function addLoadEvent(func){var oldonload=window.onload;if(typeof window.onload!='function'){window.onload=func;}else{window.onload=function(){oldonload();func();}}}
+/* ]]> */
+</script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var LoggedOutFollow = {"invalid_email":"Your subscription did not succeed, please try again with a valid email address."};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Implementing Singleton Pattern Using Java ‘enum’   Teknology_files/saved_resource(1)"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://mishrabagish.wordpress.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://mishrabagish.wordpress.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Using CountDownLatch in Java Concurrent Programming" href="http://mishrabagish.wordpress.com/2012/06/21/using-countdownlatch-in-java-concurrent-programming/">
+<link rel="next" title="Serializing Static Members of the Class" href="http://mishrabagish.wordpress.com/2012/07/09/serializing-static-members-of-the-class/">
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="./Implementing Singleton Pattern Using Java ‘enum’   Teknology_files/Implementing Singleton Pattern Using Java ‘enum’   Teknology.htm">
+<link rel="shortlink" href="http://wp.me/pwHTI-4P">
+<link rel="alternate" type="application/json+oembed" href="http://public-api.wordpress.com/oembed/1.0/?format=json&url=http%3A%2F%2Fmishrabagish.wordpress.com%2F2012%2F07%2F03%2Fimplementing-singleton-pattern-using-java-enum%2F&for=wpcom-auto-discovery"><link rel="alternate" type="application/xml+oembed" href="http://public-api.wordpress.com/oembed/1.0/?format=xml&url=http%3A%2F%2Fmishrabagish.wordpress.com%2F2012%2F07%2F03%2Fimplementing-singleton-pattern-using-java-enum%2F&for=wpcom-auto-discovery">
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Implementing Singleton Pattern Using Java &#39;enum&#39;">
+<meta property="og:url" content="http://mishrabagish.wordpress.com/2012/07/03/implementing-singleton-pattern-using-java-enum/">
+<meta property="og:description" content="Singleton pattern can be implemented in many ways. One of them is making constructor private and having another factory method to get instance. For example public class OldSingleton { private stati...">
+<meta property="og:site_name" content="Teknology">
+<meta property="og:image" content="http://1.gravatar.com/avatar/428ed39dcf8fa5f8ba18b34e02b3dfdc?s=200&amp;d=identicon&amp;r=G">
+<meta property="og:image" content="http://wordpress.com/i/blank.jpg?m=1383295312g">
+<meta name="twitter:site" content="@wordpressdotcom">
+<meta name="twitter:image" content="http://1.gravatar.com/avatar/428ed39dcf8fa5f8ba18b34e02b3dfdc?s=200&amp;d=identicon&amp;r=G">
+<meta name="twitter:card" content="photo">
+<meta name="twitter:creator" content="@wordpressdotcom">
+<meta property="fb:app_id" content="249643311490">
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom">
+<link rel="shortcut icon" type="image/x-icon" href="http://s2.wp.com/i/favicon.ico?m=1311975824g" sizes="16x16 24x24 32x32 48x48">
+<link rel="icon" type="image/x-icon" href="http://s2.wp.com/i/favicon.ico?m=1311975824g" sizes="16x16 24x24 32x32 48x48">
+<link rel="apple-touch-icon-precomposed" href="http://s0.wp.com/i/webclip.png?m=1355642671g">
+<link rel="openid.server" href="http://mishrabagish.wordpress.com/?openidserver=1">
+<link rel="openid.delegate" href="http://mishrabagish.wordpress.com/">
+<link rel="search" type="application/opensearchdescription+xml" href="http://mishrabagish.wordpress.com/osd.xml" title="Teknology">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wordpress.com/opensearch.xml" title="WordPress.com">
+		<style>
+		/* <![CDATA[ */
+		/* Block: reblog */
+		
+		.reblog-from img                   { margin: 0 10px 0 0; vertical-align: middle; padding: 0; border: 0; }
+		.reblogger-note img.avatar         { float: left; padding: 0; border: 0; }
+		.reblogger-note-content            { margin: 0 0 20px; }
+		.reblog-post .wpcom-enhanced-excerpt-content { border-left: 3px solid #eee; padding-left: 15px; }
+		.reblog-post ul.thumb-list         { display: block; list-style: none; margin: 2px 0; padding: 0; clear: both; }
+		.reblog-post ul.thumb-list li      { display: inline; margin: 0; padding: 0 1px; border: 0; }
+		.reblog-post ul.thumb-list li a    { margin: 0; padding: 0; border: 0; }
+		.reblog-post ul.thumb-list li img  { margin: 0; padding: 0; border: 0; }
+		
+		.reblog-post .wpcom-enhanced-excerpt { clear: both; }
+		
+		.reblog-post .wpcom-enhanced-excerpt address,
+		.reblog-post .wpcom-enhanced-excerpt li,
+		.reblog-post .wpcom-enhanced-excerpt h1,
+		.reblog-post .wpcom-enhanced-excerpt h2,
+		.reblog-post .wpcom-enhanced-excerpt h3,
+		.reblog-post .wpcom-enhanced-excerpt h4,
+		.reblog-post .wpcom-enhanced-excerpt h5,
+		.reblog-post .wpcom-enhanced-excerpt h6,
+		.reblog-post .wpcom-enhanced-excerpt p { font-size: 100% !important; }
+		
+		.reblog-post .wpcom-enhanced-excerpt blockquote,
+		.reblog-post .wpcom-enhanced-excerpt pre,
+		.reblog-post .wpcom-enhanced-excerpt code,
+		.reblog-post .wpcom-enhanced-excerpt q { font-size: 98% !important; }
+		
+
+		/* ]]> */
+		</style>
+			<style>
+		#page {
+			border-color: #f50f12;
+		}
+		#main-title #site-title a:hover,
+		.post-title h1,
+		.post-title h1 a,
+		.post-extras .post-edit-link,
+		.post-entry a,
+		.post-entry .more-link:hover,
+		#author-description a,
+		.more-posts .page-title em,
+		#more-posts-inner a:hover,
+		#comments li a:hover,
+		.comment-text p a,
+		.comment-text .reply-link a:hover,
+		#comments li.byuser .comment-author,
+		#comments #respond h3,
+		.sidebar-widget a:active,
+		#calendar_wrap table td a,
+		#nav-below a:active,
+		#error404 a:hover,
+		#menu .current-menu-item > a,
+		#menu .current_page_item > a,
+		#comment-nav-above a,
+		#comment-nav-below a,
+		.comment-text table a {
+			color: #f50f12;
+		}
+	</style>
+<meta name="application-name" content="Teknology"><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-tooltip" content="Just another WordPress.com weblog"><meta name="msapplication-task" content="name=Subscribe;action-uri=http://mishrabagish.wordpress.com/feed/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="title" content="Implementing Singleton Pattern Using Java ‘enum’ | Teknology on WordPress.com">
+<meta name="description" content="Singleton pattern can be implemented in many ways. One of them is making constructor private and having another factory method to get instance. For example public class OldSingleton { private static OldSingleton instance = null; private OldSingleton() { } public static OldSingleton getInstance() { if(instance == null) instance = new OldSingleton(); return instance; } }…">
+
+<script type="text/javascript" src="./Implementing Singleton Pattern Using Java ‘enum’   Teknology_files/google_service.js">
+</script>
+<script type="text/javascript">
+if ( typeof GS_googleAddAdSenseService == 'function' ) { GS_googleAddAdSenseService("ca-pub-3443918307802676"); }
+if ( typeof GS_googleEnableAllServices == 'function' ) { GS_googleEnableAllServices() };
+</script><script src="./Implementing Singleton Pattern Using Java ‘enum’   Teknology_files/google_ads.js"></script>
+<script type="text/javascript">
+if ( typeof GA_googleAddSlot == 'function' ) { GA_googleAddSlot("ca-pub-3443918307802676", "wpcom_below_post"); }
+</script>
+<script type="text/javascript">
+if ( typeof GA_googleFetchAds == 'function' ) { GA_googleFetchAds(); }
+</script>
+
+<script type="text/javascript">
+var wpcom_ads = { bid: 7795242, pt: 'permalink', wa: 0, as: 0, domain: 'mishrabagish.wordpress.com', url: 'http://mishrabagish.wordpress.com/2012/07/03/implementing-singleton-pattern-using-java-enum/', gid: '', };
+</script>
+<style id="syntaxhighlighteranchor"></style>
+<script type="text/javascript"> 
+	window.google_analytics_uacct = "UA-52447-2"; 
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-52447-2']);
+	_gaq.push(['_setDomainName', 'wordpress.com']);
+	_gaq.push(['_initData']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})();
+</script><script type="text/javascript" async="" src="./Implementing Singleton Pattern Using Java ‘enum’   Teknology_files/ga.js"></script>
+<body class="single single-post postid-299 single-format-standard two-column content-sidebar mp6 highlander-enabled highlander-light" style="">
+<div id="page" class="hfeed">
+		<div id="page-inner">
+		<header id="branding" role="banner">
+			
+		</header><!-- #branding -->
+		<div id="main" class="clear-fix">
+	<div id="primary">
+		<div id="content" class="clear-fix">
+
+		
+			<article id="post-299" class="post-299 post type-post status-publish format-standard hentry category-design-patterns category-java tag-enum tag-java tag-singleton tag-therad-safe">
+	<header class="post-title">
+				<h1>Implementing Singleton Pattern Using Java&nbsp;‘enum’</h1>					<p class="post-date">
+			<strong>03</strong>
+			<em>Tuesday</em>
+			<span>Jul 2012</span>
+		</p>
+		<div class="post-info clear-fix">
+		<p>
+			Posted <span class="by-author"> by <span class="author vcard"><a class="url fn n" href="http://mishrabagish.wordpress.com/author/mishrabagish/" title="View all posts by mishrabagish" rel="author" sl-processed="1">mishrabagish</a></span></span> in <a href="http://mishrabagish.wordpress.com/category/design-patterns/" title="View all posts in Design Patterns" rel="category tag" sl-processed="1">Design Patterns</a>, <a href="http://mishrabagish.wordpress.com/category/java/" title="View all posts in Java" rel="category tag" sl-processed="1">Java</a>		</p>
+	</div><!-- end .post-info -->
+	</header><!-- end .post-title -->
+
+	<div class="post-content clear-fix">
+			<div class="post-extras">
+				<p><strong>Tags</strong></p><p><a href="http://mishrabagish.wordpress.com/tag/enum/" rel="tag" sl-processed="1">enum</a>, <a href="http://mishrabagish.wordpress.com/tag/java/" rel="tag" sl-processed="1">Java</a>, <a href="http://mishrabagish.wordpress.com/tag/singleton/" rel="tag" sl-processed="1">Singleton</a>, <a href="http://mishrabagish.wordpress.com/tag/therad-safe/" rel="tag" sl-processed="1">Therad safe</a></p>	</div><!-- end .post-extras -->
+
+		<div class="post-entry">
+			<p>Singleton pattern can be implemented in many ways. One of them is making constructor private and having another factory method to get instance. For example</p>
+<pre width="100%">public class OldSingleton {
+
+private static OldSingleton instance = null;
+private OldSingleton()
+{
+
+}
+
+public static OldSingleton getInstance()
+{
+  if(instance == null)
+  instance = new OldSingleton();
+  return instance;
+}
+
+}</pre>
+<p>Or</p>
+<pre width="100%">public class OldSingleton {
+
+private static final OldSingleton instance = new OldSingleton();
+private OldSingleton()
+{
+
+}
+
+public static OldSingleton getInstance()
+{
+  return instance;
+}
+
+}</pre>
+<p>Both has pros and cons, first one is not thread safe and the second creates the Singleton Object even before it is actually required. Some times we refine our first approach to make it thread safe, so we made getInstance() method syncronized</p>
+<pre width="100%">public class OldSingleton {
+
+private static OldSingleton instance = null;
+private OldSingleton()
+{
+
+}
+
+public static synchronized OldSingleton getInstance()
+{
+  if(instance == null)
+  instance = new OldSingleton();
+  return instance;
+}
+
+}</pre>
+<p>Now due to this&nbsp;synchronized method applications&nbsp;performance&nbsp;degrades. Due to this sync method many threads has to wait to execute getInstance() method. So lets do one more refinement by fine grained locking or say using double check algo</p>
+<pre width="100%">public class OldSingleton {
+
+private static OldSingleton instance = null;
+private OldSingleton()
+{
+
+}
+
+public static OldSingleton getInstance()
+{
+ if(instance == null)
+ {
+  synchronized (OldSingleton.class) {
+   if(instance == null)
+    instance = new OldSingleton();
+  }
+}
+return instance;
+}
+
+}</pre>
+<p>And still people have found this double check algorithm broken in some case.</p>
+<p>There is tons of argument about how to implement single and which one is better than other. But there is a SIMPLE and EFFECTIVE alternate as mention by Joshua Bloch in Effective Java (2nd ed, item no 3) is creation singleton using Java enum.</p>
+<p>Lets see how simple is it</p>
+<pre width="100%">public enum MySingleton {
+     INSTANCE;
+
+ public void sayHello()
+ {
+    System.out.println("Hello World");
+ }
+
+ public void sayBye()
+ {
+   System.out.println("Bye Bye");
+ }
+
+}</pre>
+<p>And how we call it</p>
+<pre width="100%">public class TestSingleton {
+
+public static void main(String[] args) {
+  MySingleton.INSTANCE.sayHello();
+  MySingleton.INSTANCE.sayBye();
+
+}
+
+}</pre>
+<p>Obviously the sayHello() and sayBye() is not thread safe( since we have not made them thread safe).</p>
+<p>But as far as creation of singleton instance is concern ‘It is completely thread safe’. Also since enum is special type of java class and it can have methods and other variables. So we can add all other required stuff to the enum class and use where ever required. For example :</p>
+<pre width="100%">MySingleton singleton = MySingleton.INSTANCE;
+singleton.sayHello();
+singleton.sayBye();</pre>
+<p>As we see here writing a singleton using enum is very simple and effective without worrying too much on concurrency and other stuff.</p>
+</body></html>
