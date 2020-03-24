@@ -1,6 +1,9 @@
 /**
 * Singleton pattern example using Java Enumj
 */
-public enum EasySingleton{
+
+package tutorial;
+
+public enum EasySingleton {
 	INSTANCE;
 }
